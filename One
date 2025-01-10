@@ -1,0 +1,72 @@
+#include <iostream>
+
+// Function to display the main menu
+void displayMenu() {
+    std::cout << "\nSmart Parking System\n";
+    std::cout << "1. View Available Parking Spots\n";
+    std::cout << "2. Reserve a Parking Spot\n";
+    std::cout << "3. Release a Parking Spot\n";
+    std::cout << "4. Exit\n";
+    std::cout << "Enter your choice: ";
+}
+
+// Function to display available parking spots header
+void displayAvailableSpotsUI() {
+    std::cout << "\n--- View Available Parking Spots ---\n";
+}
+
+// Function to display reserve parking spot header
+void reserveSpotUI() {
+    std::cout << "\n--- Reserve a Parking Spot ---\n";
+    std::cout << "Enter Vehicle Number: ";
+}
+
+// Function to display release parking spot header
+void releaseSpotUI() {
+    std::cout << "\n--- Release a Parking Spot ---\n";
+    std::cout << "Enter Spot ID to release: ";
+}
+
+// Function to display exit header
+void exitSystemUI() {
+    std::cout << "\nExiting the Smart Parking System. Goodbye!\n";
+}
+
+// Function to display an invalid choice message
+void invalidChoiceUI() {
+    std::cout << "\nInvalid choice. Please try again.\n";
+}
+
+int main() {
+    ParkingLot lot(10); // Initialize with 10 spots
+    lot.loadDataFromFile("parking_lot_data.txt");
+
+    int choice;
+    do {
+        displayMenu();
+        std::cin >> choice;
+
+        switch (choice) {
+        case 1:
+            displayAvailableSpotsUI();
+            lot.displayAvailableSpots();
+            break;
+        case 2:
+            reserveSpotUI();
+            lot.reserveSpot();
+            break;
+        case 3:
+            releaseSpotUI();
+            lot.releaseSpot();
+            break;
+        case 4:
+            exitSystemUI();
+            lot.saveDataToFile("parking_lot_data.txt");
+            break;
+        default:
+            invalidChoiceUI();
+        }
+    } while (choice != 4);
+
+    return 0;
+}
