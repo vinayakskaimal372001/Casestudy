@@ -1,72 +1,97 @@
-#include <iostream>
+Here's the flowchart for the Parking Management System:
 
-// Function to display the main menu
-void displayMenu() {
-    std::cout << "\nSmart Parking System\n";
-    std::cout << "1. View Available Parking Spots\n";
-    std::cout << "2. Reserve a Parking Spot\n";
-    std::cout << "3. Release a Parking Spot\n";
-    std::cout << "4. Exit\n";
-    std::cout << "Enter your choice: ";
-}
 
-// Function to display available parking spots header
-void displayAvailableSpotsUI() {
-    std::cout << "\n--- View Available Parking Spots ---\n";
-}
+---
 
-// Function to display reserve parking spot header
-void reserveSpotUI() {
-    std::cout << "\n--- Reserve a Parking Spot ---\n";
-    std::cout << "Enter Vehicle Number: ";
-}
+Flowchart Description
 
-// Function to display release parking spot header
-void releaseSpotUI() {
-    std::cout << "\n--- Release a Parking Spot ---\n";
-    std::cout << "Enter Spot ID to release: ";
-}
+Start
 
-// Function to display exit header
-void exitSystemUI() {
-    std::cout << "\nExiting the Smart Parking System. Goodbye!\n";
-}
+Display main menu: 1. Admin App, 2. Driver App, 3. Exit
 
-// Function to display an invalid choice message
-void invalidChoiceUI() {
-    std::cout << "\nInvalid choice. Please try again.\n";
-}
+If Driver App selected:
 
-int main() {
-    ParkingLot lot(10); // Initialize with 10 spots
-    lot.loadDataFromFile("parking_lot_data.txt");
+1. Display 1. Register, 2. Login, 3. Exit.
 
-    int choice;
-    do {
-        displayMenu();
-        std::cin >> choice;
 
-        switch (choice) {
-        case 1:
-            displayAvailableSpotsUI();
-            lot.displayAvailableSpots();
-            break;
-        case 2:
-            reserveSpotUI();
-            lot.reserveSpot();
-            break;
-        case 3:
-            releaseSpotUI();
-            lot.releaseSpot();
-            break;
-        case 4:
-            exitSystemUI();
-            lot.saveDataToFile("parking_lot_data.txt");
-            break;
-        default:
-            invalidChoiceUI();
-        }
-    } while (choice != 4);
+2. If Register:
 
-    return 0;
-}
+Input: Name, Phone, Email, Password, Vehicle Number, Vehicle Model, Vehicle Type.
+
+Display: "Registration successful! Please log in."
+
+
+
+3. If Login:
+
+Input: Email, Password.
+
+If valid, display Driver Dashboard:
+
+1. Book Parking Spot:
+
+Show floors and available spots.
+
+Input: Spot, Start & End Time.
+
+Calculate and confirm total price.
+
+Display: "Booking Successful!"
+
+
+2. View Bookings:
+
+Display list of bookings.
+
+
+4. Unpark Vehicle:
+
+Input: Actual End Time.
+
+Calculate final price (with overstay charges).
+
+Input: Payment Mode.
+
+Display: "Unparking Successful!"
+
+
+5. Logout:
+
+Return to Main Menu.
+
+
+
+
+
+
+If Admin App selected:
+
+1. Display Admin Dashboard:
+
+1. User Management
+
+2. Floor Management:
+
+1. Create Floor: Input floor details.
+
+5. Spot Management:
+
+1. Create Spot: Input spot details and price.
+
+
+
+7. Logout: Return to Main Menu.
+
+
+
+
+If Exit selected:
+
+End Program.
+
+
+
+
+---
+
+Would you like a visual flowchart for this?
