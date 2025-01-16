@@ -1,172 +1,97 @@
-void displayMenu() {
-    std::cout << "\nSmart Parking System\n";
-    std::cout << "1. View Available Parking Spots\n";
-    std::cout << "2. Reserve a Parking Spot\n";
-    std::cout << "3. Release a Parking Spot\n";
-    std::cout << "4. Exit\n";
-    std::cout << "Enter your choice: ";
-}
+"Create a flowchart for a Parking Management System with the following structure:
 
-int main() {
-    ParkingLot lot(10); // Initialize with 10 spots
-    lot.loadDataFromFile("parking_lot_data.txt");
+1. Start
 
-    int choice;
-    do {
-        displayMenu();
-        std::cin >> choice;
 
-        switch (choice) {
-        case 1:
-            lot.displayAvailableSpots();
-            break;
-        case 2:
-            lot.reserveSpot();
-            break;
-        case 3:
-            lot.releaseSpot();
-            break;
-        case 4:
-            lot.saveDataToFile("parking_lot_data.txt");
-            std::cout << "Data saved. Exiting...\n";
-            break;
-        default:
-            std::cout << "Invalid choice. Try again.\n";
-        }
-    } while (choice != 4);
+2. Display Main Menu with options:
 
-    return 0;
-}
+Admin App
 
-class ParkingLot {
-private:
-    std::vector<ParkingSpot> spots;
+Driver App
 
-public:
-    ParkingLot(int numSpots) {
-        for (int i = 1; i <= numSpots; ++i) {
-            spots.emplace_back(i);
-        }
-    }
+Exit
 
-    void displayAvailableSpots() {
-        std::cout << "Available Spots:\n";
-        for (const auto& spot : spots) {
-            if (spot.isAvailable()) {
-                spot.displaySpot();
-            }
-        }
-    }
 
-    void reserveSpot() {
-        std::cout << "Enter Vehicle Number: ";
-        std::string vehicleNum;
-        std::cin >> vehicleNum;
 
-        for (auto& spot : spots) {
-            if (spot.isAvailable()) {
-                if (spot.reserveSpot(vehicleNum)) {
-                    std::cout << "Spot " << spot.getID() << " reserved successfully!\n";
-                    return;
-                }
-            }
-        }
-        std::cout << "No available spots!\n";
-    }
+3. For Driver App, show:
 
-    void releaseSpot() {
-        std::cout << "Enter Spot ID to release: ";
-        int spotID;
-        std::cin >> spotID;
+Option to Register:
 
-        for (auto& spot : spots) {
-            if (spot.getID() == spotID && !spot.isAvailable()) {
-                double charges = spot.calculateCharges();
-                spot.releaseSpot();
-                std::cout << "Spot " << spotID << " released. Charges: $" << charges << "\n";
-                return;
-            }
-        }
-        std::cout << "Invalid Spot ID or Spot is already available!\n";
-    }
+Input fields: Name, Phone, Email, Password, Vehicle Number, Vehicle Model, Vehicle Type.
 
-    void saveDataToFile(const std::string& filename) {
-        std::ofstream outFile(filename);
-        if (outFile.is_open()) {
-            for (const auto& spot : spots) {
-                outFile << spot.getID() << " " << spot.isAvailable() << " " << spot.getVehicleNumber() << "\n";
-            }
-            outFile.close();
-        }
-    }
+Output: "Registration successful! Please log in."
 
-    void loadDataFromFile(const std::string& filename) {
-        std::ifstream inFile(filename);
-        if (inFile.is_open()) {
-            int id;
-            bool isOccupied;
-            std::string vehicleNum;
 
-            while (inFile >> id >> isOccupied >> vehicleNum) {
-                spots[id - 1] = ParkingSpot(id);
-                if (!isOccupied) {
-                    spots[id - 1].reserveSpot(vehicleNum);
-                }
-            }
-            inFile.close();
-        }
-    }
-};class ParkingSpot {
-private:
-    int spotID;
-    bool isOccupied;
-    std::string vehicleNumber;
-    std::chrono::time_point<std::chrono::steady_clock> startTime;
+Option to Login:
 
-public:
-    ParkingSpot(int id) : spotID(id), isOccupied(false), vehicleNumber("") {}
+Input fields: Email, Password.
 
-    bool reserveSpot(const std::string& vehicleNum) {
-        if (!isOccupied) {
-            isOccupied = true;
-            vehicleNumber = vehicleNum;
-            startTime = std::chrono::steady_clock::now();
-            return true;
-        }
-        return false;
-    }
+If valid, display the Driver Dashboard with these options:
 
-    bool releaseSpot() {
-        if (isOccupied) {
-            isOccupied = false;
-            vehicleNumber = "";
-            return true;
-        }
-        return false;
-    }
+1. Book Parking Spot:
 
-    double calculateCharges() {
-        auto endTime = std::chrono::steady_clock::now();
-        auto duration = std::chrono::duration_cast<std::chrono::hours>(endTime - startTime).count();
-        return (duration > 0 ? duration : 1) * 5.0; // $5/hour
-    }
+Show available floors and spots.
 
-    bool isAvailable() const {
-        return !isOccupied;
-    }
+Input fields: Spot Number, Start Time, End Time.
 
-    int getID() const {
-        return spotID;
-    }
+Calculate price and confirm booking.
 
-    std::string getVehicleNumber() const {
-        return vehicleNumber;
-    }
+Output: "Booking successful!"
 
-    void displaySpot() const {
-        std::cout << "Spot ID: " << spotID
-                  << " | Status: " << (isOccupied ? "Occupied" : "Available")
-                  << " | Vehicle: " << (isOccupied ? vehicleNumber : "None") << "\n";
-    }
-};
 
+
+2. View Bookings:
+
+Display all bookings (ID, Spot, Floor, Status, Price).
+
+
+
+3. Unpark Vehicle:
+
+Input: Actual End Time.
+
+Calculate final amount (including overstay).
+
+Input Payment Mode (Cash/Card/UPI).
+
+Output: "Unparking successful!"
+
+
+
+4. Logout: Return to Main Menu.
+
+
+
+
+
+
+4. For Admin App, show:
+
+Display Admin Dashboard with options:
+
+1. User Management
+
+
+2. Floor Management:
+
+Option to Create Floor (input floor details).
+
+
+
+3. Spot Management:
+
+Option to Create Spot (input spot details and price).
+
+
+
+4. Logout: Return to Main Menu.
+
+
+
+
+
+5. If Exit is selected, end the program.
+
+
+
+Use basic shapes and connectors to represent steps, decisions, and inputs/outputs. Start the flowchart with a "Start" symbol and end it with an "End" symbol."
