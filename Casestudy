@@ -1,97 +1,109 @@
-"Create a flowchart for a Parking Management System with the following structure:
+Prompt for FigJam Flowchart:
 
-1. Start
+"Create a detailed flowchart for the Parking Management System with the following structure and flow:
+
+Main Menu
+
+1. Display options:
+
+1. Admin App
+
+2. Driver App
+
+3. Exit
 
 
-2. Display Main Menu with options:
-
-Admin App
-
-Driver App
-
-Exit
 
 
+Driver App Workflow
 
-3. For Driver App, show:
+1. Display options:
 
-Option to Register:
+1. Register
 
-Input fields: Name, Phone, Email, Password, Vehicle Number, Vehicle Model, Vehicle Type.
+Inputs: Name, Phone, Email, Password, Vehicle Number, Vehicle Model, Vehicle Type.
 
 Output: "Registration successful! Please log in."
 
 
-Option to Login:
+2. Login
 
-Input fields: Email, Password.
+Inputs: Email, Password.
 
-If valid, display the Driver Dashboard with these options:
+If valid, redirect to the Driver Dashboard with these options:
 
 1. Book Parking Spot:
 
-Show available floors and spots.
+Display available floors and spots.
 
-Input fields: Spot Number, Start Time, End Time.
+Inputs: Floor, Spot, Start Time, End Time.
 
 Calculate price and confirm booking.
 
 Output: "Booking successful!"
 
 
-
 2. View Bookings:
 
-Display all bookings (ID, Spot, Floor, Status, Price).
+Display booking details (ID, Spot, Floor, Status, Price).
 
 
-
-3. Unpark Vehicle:
+4. Unpark Vehicle:
 
 Input: Actual End Time.
 
-Calculate final amount (including overstay).
+Calculate final price (with overstay charges).
 
 Input Payment Mode (Cash/Card/UPI).
 
 Output: "Unparking successful!"
 
 
-
-4. Logout: Return to Main Menu.
-
+5. Logout: Return to Main Menu.
 
 
 
 
 
-4. For Admin App, show:
 
-Display Admin Dashboard with options:
+Admin App Workflow
+
+1. Display options:
 
 1. User Management
 
-
 2. Floor Management:
 
-Option to Create Floor (input floor details).
+1. Create Floor: Input floor details.
+
+5. Spot Management:
+
+1. Create Spot: Input spot details and price.
 
 
 
-3. Spot Management:
-
-Option to Create Spot (input spot details and price).
-
-
-
-4. Logout: Return to Main Menu.
+7. Logout: Return to Main Menu.
 
 
 
 
+Exit Workflow
 
-5. If Exit is selected, end the program.
+End program.
 
 
+Use appropriate shapes for:
 
-Use basic shapes and connectors to represent steps, decisions, and inputs/outputs. Start the flowchart with a "Start" symbol and end it with an "End" symbol."
+Process steps (rectangles)
+
+Decisions (diamonds)
+
+Start/End (ellipses)
+
+Arrows for flow connections.
+
+
+Ensure clarity by grouping the Driver App and Admin App workflows separately. Label all connectors and shapes."
+
+This prompt will help you design a clear and structured flowchart in FigJam! Let me know if further refinements are needed.
+
